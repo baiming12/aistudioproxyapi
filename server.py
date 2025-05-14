@@ -256,8 +256,8 @@ async def get_raw_text_content(response_element, previous_text: str, req_id: str
                 raw_text = await pre_element.inner_text(timeout=500)
             except PlaywrightAsyncError as pre_err:
                 if DEBUG_LOGS_ENABLED:
-                       error_message_line = pre_err.message.split('\\n')[0]
-    print(f"[{req_id}] (Warn) Failed to get innerText from visible <pre>: {error_message_line}", flush=True)
+                    error_message_line = pre_err.message.split('\\n')[0]
+                    print(f"[{req_id}] (Warn) Failed to get innerText from visible <pre>: {error_message_line}", flush=True) 
                 try:
                      raw_text = await response_element.inner_text(timeout=1000) # Slightly longer fallback
                 except PlaywrightAsyncError as e_parent:
