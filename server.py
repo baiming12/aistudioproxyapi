@@ -1593,7 +1593,8 @@ async def _process_request_from_queue(
                 # submitted_successfully 保持 False
 
         except PlaywrightAsyncError as key_press_error:
-            print(f"[{req_id}] (Worker) 警告: {shortcut_name}+Enter 提交(聚焦/按键)出错: {key_press_error.message.split('\\n')[0]}", flush=True) # 中文
+            error_message_line = key_press_error.message.split('\\n')[0]
+            print(f"[{req_id}] (Worker) 警告: {shortcut_name}+Enter 提交(聚焦/按键)出错: {error_message_line}", flush=True) # 中文
         except asyncio.TimeoutError:
             print(f"[{req_id}] (Worker) 警告: {shortcut_name}+Enter 提交(聚焦/按键)或检查清空超时。", flush=True)
         except Exception as eval_err:
