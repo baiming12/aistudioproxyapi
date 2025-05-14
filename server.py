@@ -1904,8 +1904,8 @@ async def _process_request_from_queue(
                                 
                                 if final_delta:
                                     try:
-                                        print(f"[{req_id}] (Worker Stream Gen DEBUG) Sending Final Delta (len={len(final_delta)}): '{final_delta[:100].replace('\n', '\\n')}...'", flush=True)
-                                        yield generate_sse_chunk(final_delta, req_id, MODEL_NAME)
+                                        debug_final_delta_snippet = final_delta[:100].replace('\n', '\\n')
+                                        print(f"[{req_id}] (Worker Stream Gen DEBUG) Sending Final Delta (len={len(final_delta)}): '{debug_final_delta_snippet}...'", flush=True)
                                     except Exception as yield_err:
                                         print(f"[{req_id}] (Worker Stream Gen) ❌ ERROR yielding final delta chunk: {yield_err}", flush=True)
                                         traceback.print_exc()
