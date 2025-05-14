@@ -1793,7 +1793,8 @@ async def _process_request_from_queue(
                             current_time = time.time()
                             if debug_logs_enabled and (current_time - last_debug_log_time > LOG_TIME_INTERVAL or loop_counter % LOG_INTERVAL == 0):  # 使用全局配置的间隔
                                 last_debug_log_time = current_time
-                                print(f"[{req_id}] (Stream DEBUG) Raw Text (len={len(fetched_raw_text)}): '{fetched_raw_text[:100].replace('\n', '\\n')}...'", flush=True)
+                                debug_text_snippet = fetched_raw_text[:100].replace('\n', '\\n')
+                                print(f"[{req_id}] (Stream DEBUG) Raw Text (len={len(fetched_raw_text)}): '{debug_text_snippet}...'", flush=True)
 
                             current_raw_text = fetched_raw_text # Use the fetched text for processing
                             if client_disconnected_event.is_set(): break
