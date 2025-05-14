@@ -1474,7 +1474,8 @@ async def _process_request_from_queue(
                         print(f"[{req_id}] (Worker) ⚠️ 清空聊天Playwright操作超时。继续执行。", flush=True)
                         await save_error_snapshot(f"clear_chat_timeout_pw_{req_id}")
                     else:
-                        print(f"[{req_id}] (Worker) ⚠️ 清空聊天Playwright错误: {clear_err.message.split('\n')[0]}. 继续执行。", flush=True) # 中文
+                        error_message_line = clear_err.message.split('\n')[0]
+                        print(f"[{req_id}] (Worker) ⚠️ 清空聊天Playwright错误: {error_message_line}. 继续执行。", flush=True) # 中文
                         await save_error_snapshot(f"clear_chat_fail_or_verify_{req_id}")
                 except asyncio.TimeoutError:
                     # 保持现有的 asyncio 超时处理
