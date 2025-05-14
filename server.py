@@ -1891,7 +1891,8 @@ async def _process_request_from_queue(
                             print(f"[{req_id}] (Worker Stream Gen) 流自然结束，最终内容检查...", flush=True) # 中文
                             # 获取最终文本内容，再次检查分块
                             final_raw_text = await get_raw_text_content(response_element, last_raw_text, req_id)
-                            print(f"[{req_id}] (Worker Stream Gen DEBUG) Final Raw Text Check (len={len(final_raw_text)}): '{final_raw_text[:150].replace('\n', '\\n')}...'", flush=True)
+                            final_raw_text_snippet = final_raw_text[:150].replace('\n', '\\n')
+                            print(f"[{req_id}] (Worker Stream Gen DEBUG) Final Raw Text Check (len={len(final_raw_text)}): '{final_raw_text_snippet}...'", flush=True)
                             
                             # 最终检查是否有新增内容
                             final_marker_index = final_raw_text.find(start_marker)
